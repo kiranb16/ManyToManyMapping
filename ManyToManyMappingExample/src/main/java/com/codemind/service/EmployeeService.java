@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codemind.exception.EmployeeNotException;
 import com.codemind.model.Employee;
 import com.codemind.model.Project;
 import com.codemind.repository.EmployeeRepository;
@@ -42,6 +43,14 @@ public class EmployeeService {
 		 projectset.add(project);
 		 employee.setProjects(projectset);
 		return employeeRepository.save(employee); 
+	}
+
+	public Employee deleteEmployee(int empId) throws EmployeeNotException {
+		try {
+		return employeeRepository.deleteAllById(empId);
+		}catch(Exception e) {
+			throw new EmployeeNotException("sorry Employee not found");
+		}
 	}
 		
 	}

@@ -12,4 +12,7 @@ public interface EmployeeRepository  extends JpaRepository<Employee, Integer>{
 	@Query(value = " select * from Employee where empId=?1 ", nativeQuery = true )
 	List<Employee> findAllById(Integer empId);
 
+	@Query(value = " delete * from Employee where empId=?1 ", nativeQuery = true )
+	Employee deleteAllById(int empId);
+
 }
